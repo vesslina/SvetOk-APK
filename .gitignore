@@ -1,0 +1,39 @@
+# Gradle / Android build output
+.gradle/
+.gradle-user-home/
+.kotlin/
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local machine configuration
+local.properties
+app.local.properties
+keystore.properties
+
+# Signing keys and release binaries
+*.jks
+*.keystore
+*.p12
+*.apk
+*.aab
+release/
+releases/
+
+# Firebase project config.
+# The real file is local; use app/google-services.example.json as a template.
+app/google-services.json
+
+# IDE / OS
+*.iml
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Kotlin/Java tooling
+*.class
+*.log
+hs_err_pid*

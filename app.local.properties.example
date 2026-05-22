@@ -1,0 +1,15 @@
+# Copy this file to app.local.properties and fill local values.
+# app.local.properties is ignored by Git.
+
+# Public base URL of the SvetOk API.
+# Example:
+# API_BASE_URL=https://api.example.com
+API_BASE_URL=
+
+# Shared API token from the backend .env API_CLIENT_TOKEN.
+# The app stores it in two parts to avoid a single obvious string in BuildConfig.
+# Example split:
+# API_CLIENT_TOKEN_A=first-half
+# API_CLIENT_TOKEN_B=second-half
+API_CLIENT_TOKEN_A=
+API_CLIENT_TOKEN_B=
