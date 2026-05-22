@@ -139,62 +139,6 @@ Copy-Item app\google-services.example.json app\google-services.json
 .\gradlew.bat :app:assembleDebug
 ```
 
-## Release APK
-
-Для нормального APK нужен release build, подписанный своим ключом. Debug APK для портфолио и распространения не подходит: он подписан debug-ключом, имеет debug-флаги и выглядит как техническая сборка.
-
-### 1. Создать keystore
-
-```powershell
-New-Item -ItemType Directory -Force -Path release
-keytool -genkeypair `
-  -v `
-  -keystore release\svetok-release.jks `
-  -alias svetok `
-  -keyalg RSA `
-  -keysize 2048 `
-  -validity 10000
-```
-
-Пароль и alias нужно сохранить. Потеря keystore означает, что обновления приложения с той же подписью установить поверх старой версии уже не получится.
-
-### 2. Настроить подпись
-
-```powershell
-Copy-Item keystore.properties.example keystore.properties
-```
-
-Заполнить `keystore.properties`:
-
-```properties
-storeFile=release/svetok-release.jks
-storePassword=<password>
-keyAlias=svetok
-keyPassword=<password>
-```
-
-### 3. Собрать release APK
-
-```powershell
-.\gradlew.bat :app:assembleRelease
-```
-
-Готовый файл будет в:
-
-```text
-app/build/outputs/apk/release/app-release.apk
-```
-
-Его можно переименовать, например:
-
-```powershell
-Copy-Item app\build\outputs\apk\release\app-release.apk release\SvetOk-1.0.apk
-```
-
-### Важное про публикацию APK
-
-Release APK содержит скомпилированный `API_BASE_URL`, клиентский API-токен и Firebase-конфигурацию. Поэтому такой APK лучше не коммитить прямо в публичный репозиторий. Более правильный вариант — загрузить APK в GitHub Releases после того, как backend-токен предназначен именно для публичной сборки или демо-окружения.
-
 ## Статус проекта
 
 `СветОк` — дипломный проект и рабочий прототип городской системы уведомлений об отключениях. Кодовая база демонстрирует не только интерфейс, но и интеграцию с реальным backend, push-инфраструктурой, локальным кэшем, картографией и административными сценариями.
